@@ -7,6 +7,7 @@ import ContactCard from "./ContactCard.astro";
 const works = await Astro.glob("../pages/works/*.md");
 const projects = await Astro.glob("../pages/projects/*.md");
 const studies = await Astro.glob("../pages/studies/*.md");
+const skills = await Astro.glob("../pages/skills/*.md");
 const certificates = await Astro.glob("../pages/certificates/*.md");
 const blogs = await Astro.glob("../pages/blogs/*.md");
 const contact = await Astro.glob("../pages/contact/*.md");
@@ -32,6 +33,24 @@ const PDF = "/cv-20240219.pdf";
             url={item.frontmatter.url}
             url_name={item.frontmatter.org}
             location={item.frontmatter.location}
+            org={item.frontmatter.org}
+          />
+        );
+      })
+    }
+  </AccordionLayout>
+
+  <AccordionLayout title={"Skills"} icon={"carbon:skill-level"}>
+    {
+      skills.map((item) => {
+        return (
+          <Card
+            title={item.frontmatter.title}
+            timeframe={item.frontmatter.date}
+            location={item.frontmatter.location}
+            tags={item.frontmatter.tags}
+            url={item.url}
+            url_name={item.frontmatter.institute}
             org={item.frontmatter.org}
           />
         );
